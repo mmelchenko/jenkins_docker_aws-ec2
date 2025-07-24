@@ -18,11 +18,6 @@ variable "availability_zone" {
   default     = "eu-central-1a"
 }
 
-variable "ami_id" {
-  description = "AMI ID for Ubuntu 22.04"
-  default     = "ami-0a23ebb4b2e6e0c1b"
-}
-
 variable "instance_type" {
   description = "EC2 instance type"
   default     = "t3.micro"

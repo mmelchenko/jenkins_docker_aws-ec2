@@ -51,8 +51,12 @@ resource "aws_network_interface" "jenkins_nic" {
   security_groups = [aws_security_group.jenkins_sg.id]
 }
 
+data "aws_ssm_parameter" "ubuntu_jammy" {
+  name = "/aws/service/canonical/ubuntu/server/jammy/stable/current/amd64/hvm/ebs-gp2/ami-id"
+}
+
 resource "aws_instance" "jenkins_server" {
-  ami                    = var.ami_id
+  ami                    = data.aws_ssm_parameter.ubuntu_jammy.value
   instance_type          = var.instance_type
   key_name               = var.key_name
   subnet_id              = aws_subnet.main.id
